@@ -5,28 +5,30 @@
 
 using namespace std;
 
-//creating constant variable
-const int MAX_PRODUCTS = 100;
 
-//creating an array
-int productIDs[MAX_PRODUCTS];
-string productNames[MAX_PRODUCTS];
-string productCategories[MAX_PRODUCTS];
-double productPrices[MAX_PRODUCTS];
-int productQuantities[MAX_PRODUCTS];
+const int MAX_PRODUCTS = 100; // max amount of product our system can accept
 
-//product counter
-int productCount = 0;
+//creating an arrays that used us storage
+int productIDs[MAX_PRODUCTS]; //for product ID
+string productNames[MAX_PRODUCTS]; //for product names
+string productCategories[MAX_PRODUCTS]; //for product categories
+double productPrices[MAX_PRODUCTS]; //for price
+int productQuantities[MAX_PRODUCTS]; //for product quantities
+
+
+int productCount = 0; // number of products initially(before the user input)
 
 //function to add products
+//the function will take name, category, price and quantity
 void addProduct(int id, string name, string category, double price, int quantity) {
     for (int i = 0; i < productCount; i++) {
-        if (productIDs[i] == id) {
-            cout << "ID already exists." << endl;
+        if (productIDs[i] == id) { //check the ID that the user enters exists or not in the store.
+            cout << "ID already exists." << endl; //if exist print this
             return;
         }
     }
 
+    //if the product count or the products on the store is less than max then add them to their storage or arrays
     if (productCount < MAX_PRODUCTS) {
         productIDs[productCount] = id;
         productNames[productCount] = name;
@@ -40,7 +42,7 @@ void addProduct(int id, string name, string category, double price, int quantity
     }
 }
 
-//function to remove products
+//function to remove products based on their ID
 void removeProduct(int id) {
     bool found = false;
     for (int i = 0; i < productCount; i++) {
@@ -65,7 +67,7 @@ void removeProduct(int id) {
 }
 
 
-//function to find products
+//function to find products based on their ID
 void findProduct(int id) {
     for (int i = 0; i < productCount; i++) {
         if (productIDs[i] == id) {
@@ -121,22 +123,34 @@ void saveInventoryToFile(string filename) {
         cout << "Error: Could not open file." << endl;
     }
 }
-
+//header function
+void header(){
+    cout << "==========================================" << endl;
+    cout << "         INVENTORY MANAGEMENT SYSTEM       " << endl;
+    cout << "==========================================" << endl;
+    cout << endl;
+    cout << "Welcome to the Inventory Management System!" << endl;
+    cout << "------------------------------------------" << endl;
+}
 //calling main function
 int main(){
     string username;
     int password;
     int trial = 3;
-    string correctUserName = "admin";
-    int correctPassword = 123;
+    string correctUserName = "admin"; //the correct user name
+    int correctPassword = 123; //the correct password
+    header(); //calling the header file
     cout << "Login" << endl;
 
+    //asking the user to login and if the wrong password and user name is entered it will have 3 trials.
     while(trial > 0){
 
         cout << "Enter username: " ;
         cin >> username;
         cout << "Enter password: " ;
         cin >> password;
+        
+        //cheaking the username and password
         if(username == correctUserName && password == correctPassword){
             cout << "LogIn successfully!" << endl;
             break;
