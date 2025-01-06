@@ -1,0 +1,29 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+const int MAX_PRODUCTS = 100;
+int productIDs[MAX_PRODUCTS];
+string productNames[MAX_PRODUCTS];
+string productCategories[MAX_PRODUCTS];
+double productPrices[MAX_PRODUCTS];
+int productQuantities[MAX_PRODUCTS];
+int productCount = 0;
+
+
+
+// function to print all products in the inventory
+void printProducts() {
+    for (int i = 0; i < productCount; i++) {
+        cout << "ID: " << productIDs[i] << endl;
+        cout << "Name: " << productNames[i] << endl;
+        cout << "Category: " << productCategories[i] << endl;
+        cout << "Price: $" << productPrices[i] << endl;
+        cout << "Quantity: " << productQuantities[i] << endl;
+        cout << "------------------------" << endl;
+    }
+}
+
